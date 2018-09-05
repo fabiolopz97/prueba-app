@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {
+        checkConnection();
+    }
+
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        alert('Connection type: ' + states[networkState]);
+    }
+
+    </script>
+
+</head>
+<body>
+	
+	<h1>PRUEBA CONSUMIENDO JSON</h1>
+	
+	<p id="traer">
+	</p>
+	
+
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="crossorigin="anonymous"></script>
+
+	
+    
+	<!--Script-->
+	<script>
+		$(function() {
+			$.getJSON('https://fabiolopz97.000webhostapp.com/db-prueba/acceso.php', function(data) {
+
+				console.log(data);
+				console.log(data.length);
+				for (var i = 0; i < data.length; i++) {
+					$('#traer').append(data[i].nombre + '</br>');
+				}
+			});
+		});
+		function traerDatos() {
+			
+			/*$.getJSON('http://192.168.1.7/db-prueba/acceso.php', function(data) {
+				console.log(data);
+			});*/
+		}
+
+	</script>
+
+</body>
+</html>
